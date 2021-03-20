@@ -8,8 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <title></title>
+    <link rel="stylesheet" href="/static/wordart.css">
+    <title>Game</title>
   <style media="screen">
       .outer
       {
@@ -43,74 +43,136 @@
        height: 100px;
        object-fit: cover;
       }
-      .image2 {
-          position: absolute;
-          top: 90px
-          left:250px
-          border: 0px solid ##FFD700;
+      .cell .characterImage
+      {
           width: 40px;
           height: 80px;
-          z-index: 99;
+      }
+      .characterImage {
+            position: absolute;
+            top: 40%;
+            left:40%;
+            border: 0px solid ##FFD700;
+            width: 40px;
+            height: 80px;
+            z-index: 99;
+        }
+        .rollButton
+        {
+          width: 50%;
+          margin-left: 25%;
+        }
+        .userTurnTitle
+        {
+          font-size: 20px;
+        }
+        .cell-start
+        {
+          background-color: #00EBC0;
         }
   </style>
   </head>
   <body>
-  <div class="outer">
-    <img class="image2" id="imgUser1" src="static/c1.png" style="top:90px;left:135px"></img>
-    <img class="image2" id="imgUser2" src="static/c2_1.png" style="top:90px;left:125px"></img>
+    <div class="outer">
+
     <div class="container">
       <div class="row">
-        <div class="col-12 cellHeading">
-          Heading
+        <div class="col-1 cell cell-start">
+          <img class="characterImage" id="imgUser1" src="static/c1.png"></img>
+          <img class="characterImage" id="imgUser2" src="static/c2_1.png"></img>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-1 cell-no-border"></div>
-        <div class="col-2 cell">
+        <div class="col-2 cell" id="divAnimal1">
           <img id="frog" src="static/frog.png"></img>
         </div>
-        <div class="col-2 cell">
+        <div class="col-2 cell" id="divAnimal2">
           <img id="elephant" src="static/elephant.png"></img>
         </div>
-        <div class="col-2 cell">
-          <img id="giraffe" src="static/giraffe.png">
-        </div>
-        <div class="col-2 cell"><img id="monkey" src="static/monkey.png"></div>
-        <div class="col-2 cell"><img id="peacock" src="static/peacock.png"></div>
+        <div class="col-2 cell" id="divAnimal3"><img id="giraffe" src="static/giraffe_1.png"></img></div>
+        <div class="col-2 cell" id="divAnimal4"><img id="monkey" src="static/monkey.png"></img></div>
+        <div class="col-2 cell" id="divAnimal5"><img id="peacock" src="static/peacock.png"></img></div>
         <div class="col-1 cell-no-border"></div>
       </div>
 
       <div class="row">
-        <div class="col-1 cell-no-border"></div>
-        <div class="col-2 cell"><img id="tounge" src="static/tounge_emoji.png"/></div>
+        <div class="col-1 cell-no-border">
+          <button onclick="toggleSpeaker()" id="btnSpeaker" style="font-size:40px;width:100%;height:100%">🔇</button>
+        </div>
+        <div class="col-2 cell" id="divAnimal16"><img src="static/tounge_emoji.png"/></div>
         <div class="col-6 cell-no-border">
-          <img align="left" src="/static/dice_roll.gif" height="100px" id="imgDice" style="display: none;"  alt="" />
-          <img align="right" src="/static/spinner.gif" height="100px" id="spinner" style="display: none"  alt="" />
-          <br><br><br><br><br><br><center><font size=5><font color="#D2BF37"><p id="message"></p></font></font></center>
+
+            <img align="left" src="/static/dice_roll.gif" height="100px" id="imgDice" style="display: none;"  alt="" />
+            <img align="right" src="/static/spinner.gif" height="100px" id="spinner" style="display: none"  alt="" />
+            <br><br><br><br><br><br>
+            <center>
+              <p id="message1" style="font-size: 5;color='#D2BF37'">
+              </p>
+            </center>
+
       </div>
-        <div class="col-2 cell"><img id="penguin" src="static/penguin.png"></img></div>
+        <div class="col-2 cell" id="divAnimal6"><img id="penguin" src="static/penguin.png"></img></div>
         <div class="col-1 cell-no-border"></div>
       </div>
 
       <div class="row">
         <div class="col-1 cell-no-border"></div>
-        <div class="col-2 cell">
-            <img id="sloth" src="static/sloth.png">
+        <div class="col-2 cell" id="divAnimal15">
+          <img id="sloth" src="static/sloth.png"></img>
         </div>
-        <div class="col-6 cell-no-border"></div>
-        <div class="col-2 cell">
-          <img id="grin" src="static/grin.jfif">
-        </div>
-        <div class="col-1 cell-no-border"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-1 cell-no-border"></div>
-        <div class="col-2 cell"><img id=turtle src="static/turtle.jpg"/></div>
         <div class="col-6 cell-no-border">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <span style="float:left">User 1 Score</span>
+              </div>
+              <div class="col-6">
+                <span style="float:right">User 2 Score</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <span id="user1ScoreText"  style="float:left">0</span>
+              </div>
+              <div class="col-6">
+                <span id="user2ScoreText" style="float:right">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2 cell" id="divAnimal7">
+          <img id="grin" src="static/grin.png"></img>
+        </div>
+        <div class="col-1 cell-no-border"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-1 cell-no-border"></div>
+        <div class="col-2 cell" id="divAnimal14"><img id=turtle src="static/turtle.png"/></div>
+        <div class="col-6 cell-no-border">
+            <div id="divTimer" style="display:none">
+
+            </div>
+            <div id="divThumbsUp" style="display:none">
+              <center>
+                <span id="message" style="font-size: 30px;color:#D2BF37">
+                </span>
+              </center>
+              <center>
+                  <button type="button" style="font-size:40px;" id="thumbsUp" onclick="updateScore(1);">👍</button>
+                  <button type="button" style="font-size:40px;" id="thumbsDown" onclick="updateScore(0);">👎</button>
+              </center>
+            </div>
+            <div class="" id="divRollButton">
             <button type="button" name="button" class="btn btn-warning rollButton" onclick=" rollDice();">Roll</button>
+            <center>
+              <div class="wordart radial">
+                <span id="userTurnText" class="text">
+                  User 1's Turn
+                </span>
+            </div>
+            </center>
+            </div>
         </div>
-        <div class="col-2 cell">
+        <div class="col-2 cell" id="divAnimal8">
           <img id="cat" src="static/cat.png"></img>
         </div>
         <div class="col-1 cell-no-border"></div>
@@ -118,27 +180,28 @@
 
       <div class="row">
         <div class="col-1 cell-no-border"></div>
-        <div class="col-2 cell">
-          <img id="cow" src="static/cow.png"/>
-        </div>
-        <div class="col-2 cell">
-            <img id="cheetah" src="static/cheetah.png" />
-        </div>
-        <div class="col-2 cell">
-        <img id="lion" src="static/lion.png"></img>
-        </div>
-        <div class="col-2 cell">
-          <img id="angry" src="static/angry.jfif"/>
-        </div>
-        <div class="col-2 cell">
-            <div class="col-2 cell">
-              <img id="skunk" src="static/skunk.png"></img>
-            </div>
-        </div>
+        <div class="col-2 cell" id="divAnimal13"><img id="cow" src="static/cow.png"/></div>
+        <div class="col-2 cell" id="divAnimal12"><img id="cheetah" src="static/cheetah.png"></img></div>
+        <div class="col-2 cell" id="divAnimal11"><img id="lion" src="static/lion.png"></img></div>
+        <div class="col-2 cell" id="divAnimal10"><img id="angry" src="static/angry.png"/></div>
+        <div class="col-2 cell" id="divAnimal9"><img id="skunk" src="static/skunk.png"></img></div>
         <div class="col-1 cell-no-border"></div>
       </div>
+
     </div>
-</div>
+    </div>
+    <br><br>
+
+    <center>
+        <a href="/rules">
+      <button type="button" name="button">Game Rules</button>
+      </a>
+    </center>
+    <div >
+      <audio controls id="backgroundMusic" preload="auto" muted="muted">
+        <source src="static/backgroundMusic.mp3" type="audio/mpeg">
+      </audio>
+    </div>
 </body>
 <script src="/static/game.js"></script>
 </html>
