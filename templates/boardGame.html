@@ -84,7 +84,9 @@
         <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell"><img id="tounge" src="static/tounge_emoji.png"/></div>
         <div class="col-6 cell-no-border">
-          6
+          <img align="left" src="/static/dice_roll.gif" height="100px" id="imgDice" style="display: none;"  alt="" />
+          <img align="right" src="/static/spinner.gif" height="100px" id="spinner" style="display: none"  alt="" />
+          <br><br><br><br><br><br><center><font size=5><font color="#D2BF37"><p id="message"></p></font></font></center>
       </div>
         <div class="col-2 cell"><img id="penguin" src="static/penguin.png"></img></div>
         <div class="col-1 cell-no-border"></div>
@@ -106,8 +108,7 @@
         <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell"><img id=turtle src="static/turtle.jpg"/></div>
         <div class="col-6 cell-no-border">
-            <button type="button" name="button" class="btn" onclick="moveUser();">Move 1</button>
-            <button type="button" name="button" class="btn" onclick="moveUser();">Move 2</button>
+            <button type="button" name="button" class="btn btn-warning rollButton" onclick=" rollDice();">Roll</button>
         </div>
         <div class="col-2 cell">
           <img id="cat" src="static/cat.png"></img>
@@ -139,92 +140,5 @@
     </div>
 </div>
 </body>
-<script type="text/javascript">
-  var user1ImageLeft = 0;
-  var user1ImageTop = 0;
-  var user2ImageLeft = 0;
-  var user2ImageTop = 0;
-  var currentUser = 0;
-  function moveUser()
-  {
-    var randomNumber = getRandomNumber(6);
-    for (i = 0; i < randomNumber; i++) {
-      if(currentUser == 0)
-      {
-        moveCharacter1();
-      }
-      else
-      {
-        moveCharacter2();
-      }
-    }
-    currentUser = currentUser+1;
-    currentUser = currentUser%2;
-  }
-
-  function moveCharacter1()
-  {
-    if(user1ImageLeft == 0 && user1ImageTop==0)
-    {
-      user1ImageTop = 90;
-      user1ImageLeft = 250;
-    }
-    else if(user1ImageTop < 100 && user1ImageLeft<1000)
-    {
-        user1ImageLeft += 200;
-    }
-    else if(user1ImageLeft>1000 && user1ImageTop<500) //Reached right most
-    {
-        user1ImageTop+=125;
-    }
-    else if(user1ImageTop>500 && user1ImageLeft>250) //Reached bottom right
-    {
-        user1ImageLeft-=200;
-    }
-    else
-    {
-      user1ImageTop-=125;
-    }
-    var img = document.getElementById("imgUser1");
-    img.style.top=user1ImageTop + "px";
-    img.style.left=user1ImageLeft + "px";
-    return false;
-  }
-
-  function moveCharacter2()
-  {
-    if(user2ImageLeft == 0 && user2ImageTop==0)
-    {
-      user2ImageTop = 90;
-      user2ImageLeft = 250;
-    }
-    else if(user2ImageTop < 100 && user2ImageLeft<1000)
-    {
-        user2ImageLeft += 200;
-    }
-    else if(user2ImageLeft>1000 && user2ImageTop<500) //Reached right most
-    {
-        user2ImageTop+=125;
-    }
-    else if(user2ImageTop>500 && user2ImageLeft>250) //Reached bottom right
-    {
-        user2ImageLeft-=200;
-    }
-    else
-    {
-      user2ImageTop-=125;
-    }
-    var img = document.getElementById("imgUser2");
-    img.style.top=user2ImageTop + "px";
-    img.style.left=user2ImageLeft + "px";
-    return false;
-
-  }
-
-  function getRandomNumber(maxLimit)
-  {
-    var randomNumber=Math.random()*(maxLimit-1)+1;
-    return Math.floor(randomNumber);
-  }
-</script>
+<script src="/static/game.js"></script>
 </html>
