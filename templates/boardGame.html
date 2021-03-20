@@ -3,6 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -37,13 +38,25 @@
        height: 110px;
        object-fit: cover;
       }
+      .image2 {
+          position: absolute;
+          top: 90px
+          left:250px
+          border: 0px solid ##FFD700;
+          width: 40px;
+          height: 80px;
+          z-index: 99;
+        }
   </style>
   </head>
   <body>
+    <br /><br />
   <div class="outer">
+    <img class="image2" id="imgUser1" src="static/c1.png" style="top:90px;left:135px"></img>
+    <img class="image2" id="imgUser2" src="static/c2_1.png" style="top:90px;left:125px"></img>
     <div class="container">
       <div class="row">
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell">
           <img id="frog" src="static/frog.png"></img>
         </div>
@@ -65,35 +78,35 @@
           6
       </div>
         <div class="col-2 cell"><img id="penguin" src="static/penguin.png"></img></div>
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
       </div>
 
       <div class="row">
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell">
             <img id="sloth" src="static/sloth.png">
         </div>
-        <div class="col-6 cell-no-border">6</div>
+        <div class="col-6 cell-no-border"></div>
         <div class="col-2 cell">
           <img id="grin" src="static/grin.jfif">
         </div>
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
       </div>
 
       <div class="row">
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell"><img id=turtle src="static/turtle.jpg"/></div>
         <div class="col-6 cell-no-border">
-            6
+            <button type="button" name="button" class="btn" onclick="moveUser();">Move 1</button>
         </div>
         <div class="col-2 cell">
           <img id="cat" src="static/cat.png"></img>
         </div>
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
       </div>
 
       <div class="row">
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell">
           <img id="cow" src="static/cow.png"/>
         </div>
@@ -109,9 +122,50 @@
         <div class="col-2 cell">
             <div class="col-2 cell"><img id="skunk" src="static/skunk.png"></img>
         </div>
-        <div class="col-1 cell-no-border">1</div>
+        <div class="col-1 cell-no-border"></div>
       </div>
     </div>
 </div>
+
 </body>
+<script type="text/javascript">
+  var user1ImageLeft = 0;
+  var user1ImageTop = 0;
+  var user2ImageLeft = 0;
+  var user2ImageTop = 0;
+
+  function moveUser()
+  {
+    moveCharacter1();
+  }
+
+  function moveCharacter1()
+  {
+    if(user1ImageLeft == 0 && user1ImageTop==0)
+    {
+      user1ImageTop = 90;
+      user1ImageLeft = 250;
+    }
+    else if(user1ImageTop < 100 && user1ImageLeft<1000)
+    {
+        user1ImageLeft += 200;
+    }
+    else if(user1ImageLeft>1000 && user1ImageTop<500) //Reached right most
+    {
+        user1ImageTop+=125;
+    }
+    else if(user1ImageTop>500 && user1ImageLeft>250) //Reached bottom right
+    {
+        user1ImageLeft-=200;
+    }
+    else
+    {
+      user1ImageTop-=125;
+    }
+    var img = document.getElementById("imgUser1");
+    img.style.top=user1ImageTop + "px";
+    img.style.left=user1ImageLeft + "px";
+    return false;
+  }
+</script>
 </html>
