@@ -19,7 +19,7 @@
 
       .cell
       {
-        height: 130px;
+        height: 120px;
         border: 1px solid;
         background-color: gold;
 
@@ -28,6 +28,11 @@
       {
         height: 100px;
       }
+      .cellHeading
+      {
+        height: 80px;
+        border: 0px solid;
+      }
       img {
        width: 100px;
        height: 100px;
@@ -35,7 +40,7 @@
       }
       .cell img {
        width: 150px;
-       height: 110px;
+       height: 100px;
        object-fit: cover;
       }
       .image2 {
@@ -50,11 +55,15 @@
   </style>
   </head>
   <body>
-    <br /><br />
   <div class="outer">
     <img class="image2" id="imgUser1" src="static/c1.png" style="top:90px;left:135px"></img>
     <img class="image2" id="imgUser2" src="static/c2_1.png" style="top:90px;left:125px"></img>
     <div class="container">
+      <div class="row">
+        <div class="col-12 cellHeading">
+          Heading
+        </div>
+      </div>
       <div class="row">
         <div class="col-1 cell-no-border"></div>
         <div class="col-2 cell">
@@ -111,7 +120,7 @@
           <img id="cow" src="static/cow.png"/>
         </div>
         <div class="col-2 cell">
-            <img id="cheetah" src="static/cheetah.png">
+            <img id="cheetah" src="static/cheetah.png" />
         </div>
         <div class="col-2 cell">
         <img id="lion" src="static/lion.png"></img>
@@ -120,13 +129,14 @@
           <img id="angry" src="static/angry.jfif"/>
         </div>
         <div class="col-2 cell">
-            <div class="col-2 cell"><img id="skunk" src="static/skunk.png"></img>
+            <div class="col-2 cell">
+              <img id="skunk" src="static/skunk.png"></img>
+            </div>
         </div>
         <div class="col-1 cell-no-border"></div>
       </div>
     </div>
 </div>
-
 </body>
 <script type="text/javascript">
   var user1ImageLeft = 0;
