@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html><title>SV Games</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body>
+<head>
+  <style>
+
+  body {
+    font-family: Arial;
+    color: #F00;
+  }
+
+  .split {
+
+    height: 100%;
+
+    width: 65%;
+
+    position: fixed;
+
+    z-index: 1;
+
+    top: 0;
+
+    overflow-x: hidden;
+
+    padding-top: 20px;
+
+  }
+
+
+
+  .left {
+    left: 0;
+    background-color:#E3F0D9;
+  }
+
+
+
+  .right {
+    right: 0;
+    background-color:#eef;
+  }
+
+
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+
+
+  .centered_rules {
+    position: absolute;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    margin-top:20%;
+  }
+
+
+
+  .centered img {
+
+    width: 150px;
+    border-radius: 50%;
+
+  }
+.w3-top
+{
+  z-index: 99;
+}
+
+.centered_rules ul li
+{
+  font-size: 20px;
+}
+  </style>
+</head>
+<!-- Navbar (sit on top) -->
+
+<div class="w3-top" >
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>SV</b> Games</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="/register" class="w3-bar-item w3-button">Register</a>
+      <a href="/login" class="w3-bar-item w3-button">Login</a>
+      <a href="/index#projects" class="w3-bar-item w3-button">Games</a>
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+    </div>
+  </div>
+</div>
+
+<!-- Page content -->
+
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <!-- Project Section -->
+<div class="split left">
+      <div class="centered">
+        <img src="http://wallpaperstock.net/jungle-animals-four_wallpapers_47633_768x1024.jpg"/>
+      </div>
+  </div>
+  <div class="split right">
+    <div class="centered_rules">
+      <h1>Funspree game rules</h1>
+      <ul>
+        <li>
+          First player pushes roll button
+        </li>
+        <li>
+          Do the designated action as a designated animal for 10 to 15 seconds!
+        </li>
+        <li>
+          If other player feels that the current player did a good job, then they press the thumbs up to give a point.
+        </li>
+        <li>
+          Repeat again for the next player
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

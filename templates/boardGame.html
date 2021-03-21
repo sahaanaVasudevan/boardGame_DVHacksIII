@@ -9,7 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/wordart.css">
-    <title>Game</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/static/timer.css?2">
+    <title>Funspree</title>
   <style media="screen">
       .outer
       {
@@ -73,11 +75,15 @@
   </style>
   </head>
   <body>
+    <br><br>
     <div class="outer">
 
     <div class="container">
       <div class="row">
         <div class="col-1 cell cell-start">
+          <b>
+            START
+          </b>
           <img class="characterImage" id="imgUser1" src="static/c1.png"></img>
           <img class="characterImage" id="imgUser2" src="static/c2_1.png"></img>
         </div>
@@ -149,7 +155,14 @@
         <div class="col-2 cell" id="divAnimal14"><img id=turtle src="static/turtle.png"/></div>
         <div class="col-6 cell-no-border">
             <div id="divTimer" style="display:none">
-
+              <center>
+                <span id="message" style="font-size: 35px;color:#0F0">
+                </span>
+              </center>
+              <center>
+                <div id="divTimerView">
+                </div>
+              </center>
             </div>
             <div id="divThumbsUp" style="display:none">
               <center>
@@ -202,6 +215,73 @@
         <source src="static/backgroundMusic.mp3" type="audio/mpeg">
       </audio>
     </div>
+    <script type="text/javascript">
+      var isSpeakerEnabled = 0;
+      var audio = new Audio('static/backgroundMusic.mp3');
+      var footStep = new Audio('static/footstep.mp3');
+      function playFootStepSound()
+      {
+          if(isSpeakerEnabled == 1)
+          {
+            try {
+              var footStep = new Audio('static/footstep.mp3');
+              footStep.play();
+            }
+            catch(err)
+            {
+
+            }
+          }
+      }
+
+      function toggleSpeaker()
+      {
+        if(isSpeakerEnabled==0)
+        {
+          document.getElementById("btnSpeaker").innerHTML = "🔊";
+          isSpeakerEnabled = 1;
+        }
+        else
+        {
+          document.getElementById("btnSpeaker").innerHTML = "🔇";
+          isSpeakerEnabled = 0;
+        }
+
+        return false;
+      }
+
+      $(document).ready(function(){
+      });
+      var cnt = 1;
+      function moveTest()
+      {
+        $('#imgUser1').prependTo('#divAnimal' + cnt);
+        cnt++;
+      }
+
+      async function showTimer() {
+        document.getElementById("divTimer").style.display="";
+        startTimer();
+        await sleep(1000 * 10);
+        //document.getElementById("divTimerView").innerHTML = "";
+        document.getElementById("divTimer").style.display="none";
+        //resetTimer();
+        if(user1Counter>=16 || user2Counter>=16)
+        {
+          showWinner();
+        }
+        else
+        {
+          document.getElementById("divThumbsUp").style.display="";
+        }
+      }
+
+      function showWinner()
+      {
+        document.getElementById("divWinner").style.display="";
+      }
+    </script>
 </body>
 <script src="/static/game.js"></script>
+<script src="/static/timer.js?13"></script>
 </html>
