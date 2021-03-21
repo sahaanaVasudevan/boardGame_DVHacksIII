@@ -14,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Migrate(app,db)
 
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 #DB model for User - Register and Login
@@ -32,7 +33,8 @@ class Users(db.Model):
 
   def __repr__(self):
       return f"User name: {self.username} {self.fullname} {self.userType}"
-
+#db.drop_all()
+db.create_all()
 @app.route('/') #By default go to index page
 def game_redirect():
     return redirect(url_for('index'))
