@@ -1,4 +1,4 @@
-var animals = ["Frog","Elephant","Giraffe","Monkey","Peacock","Penguin","Smiley","Cat","Skunk","Angry","Lion","Cheetah","Cow","Turtle","Sloth","tounge_emoji"];
+
 var actions = ["Hop","Sing","Dance","Roll","Sneak Peak","March"];
 var emojiActions = ["Laugh","Cry"];
 var user1ImageLeft = 0;
@@ -19,6 +19,7 @@ var list = [
     { action:'Act' }
 ];
 
+//Roll a dice and generate random number
 function rollDice()
 {
   var img = document.getElementById("imgDice");
@@ -41,6 +42,7 @@ function rollDice()
   return false;
 }
 
+//Move user icon to next position
 async function moveUser(randomNumber, actionRandomNumber)
 {
   var i;
@@ -48,6 +50,7 @@ async function moveUser(randomNumber, actionRandomNumber)
   await sleep(500);
   var currentUserCounter = 0;
   var currentPosition = 0;
+  //Loop and move the user icon
   for (i = 0; i < randomNumber; i++) {
     if(currentUser == 0)
     {
@@ -72,6 +75,7 @@ async function moveUser(randomNumber, actionRandomNumber)
       currentPosition++;
       moveCharacter2(currentPosition);
     }
+    //play walking sound
     playFootStepSound();
     await sleep(750);
   }
@@ -79,15 +83,17 @@ async function moveUser(randomNumber, actionRandomNumber)
   if(user1Counter>=16)
   {
     user1Score += 10;
+    winner = 1;
   }
   if(user2Counter>=16)
   {
     user2Score += 10;
+    winner = 2;
   }
 
   if(user1Counter>16)
   {
-    user1Counter = 16 - user1Counter;
+    user1Counter = user1Counter - 16;
     currentUserCounter = user1Counter;
   }
   if(user2Counter>16)
